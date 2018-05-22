@@ -1,4 +1,4 @@
-# vue_elem
+# vue_elem  vue-cli 3.0.0
 ## 第一次更新内容
     1. 本地仓库和github仓库ssh绑定
     2. 使用vue-cli 3.0.0 创建vue 工程
