@@ -1,28 +1,33 @@
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+    <div>
+        <transition name="router-fade" mode="out-in">
+            <!-- keep-alive 包裹动态组件时，会缓存不活动的组件实例，而不是销毁它们。 -->
+            <keep-alive>
+                <router-view v-if="$route.meta.keepAlive"></router-view>
+            </keep-alive>
+        </transition>
+        <transition name="router-fade" mode="out-in">
+            <router-view v-if="!$route.meta.keepAlive"></router-view>
+        </transition>
+        <svg-icon></svg-icon>
+    </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+    import svgIcon from './components/common/svg';
 
-export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
-}
+    export default {
+        components: {
+            svgIcon
+        }
+    }
 </script>
 
-<style>
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+<style lang="scss">
+    .router-fade-enter-active, .router-fade-leave-active {
+        transition: opacity .3s;
+    }
+    .router-fade-enter, .router-fade-leave-active {
+        opacity: 0;
+    }
 </style>
